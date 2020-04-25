@@ -1,0 +1,60 @@
+.contact-form
+  width: 100%
+  margin: 30px auto
+
+  &__btn
+    display: block
+    font-size: 16px
+    font-weight: 500
+    border: none
+    outline: none
+    height: 40px
+    padding: 0 40px
+    border-radius: 3px
+    margin: 0 auto
+    color: $main-white-color
+    background-color: $main-blue-color
+    transition: .4s
+    cursor: pointer
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)
+
+    &:hover
+      background-color: darken($main-blue-color, 5%)
+
+.control
+  display: flex
+  flex-direction: column
+  min-height: 60px
+  margin: 0 0 10px
+
+  &__label
+    display: none
+
+  &__input
+    width: 100%
+    border: 1px solid $main-gray-color
+    outline: transparent
+    height: 40px
+    padding: 0 15px
+    font-size: 16px
+    border-radius: 3px
+    box-sizing: border-box
+
+    &:focus,
+    &:hover
+      border-color: $main-dark-color
+
+    &--error
+      border-color: $main-red-color
+
+      &:focus,
+      &:hover
+        border-color: $main-red-color
+
+  &__error-messsage
+    font-size: 12px
+    font-weight: 300
+    color: $main-red-color
+    margin-top: 3px
+    padding: 0 0 0 10px
+

@@ -1,0 +1,30 @@
+.custom-alert
+  position: absolute
+  width: 100%
+  max-width: 350px
+  right: 5%
+  top: 30px
+  transition: .4s
+  background-color: $main-white-color
+  border: 1px solid $main-red-color
+  border-radius: 3px
+  padding: 20px
+
+  &__wrap
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+  &__btn
+    background-color: transparent
+    border: none
+    outline: none
+    border-radius: 50%
+    padding: 10px
+    cursor: pointer
+
+    &:hover
+      background-color: lighten($main-red-color, 30%)
+
+    svg
+      fill: $main-red-color
