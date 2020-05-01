@@ -1,0 +1,33 @@
+.page-footer
+  position: relative
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 100%
+  height: 62px
+  background-color: $main-blue-color
+
+  &__to-top
+    position: absolute
+    background: $main-red-color
+    padding: 0
+    border: transparent
+    border-radius: 50%
+    cursor: pointer
+    width: 50px
+    height: 50px
+    top: -25px
+    right: 5%
+
+    &:hover
+      background: darken($main-red-color, 10%)
+
+    svg
+      fill: $main-white-color
+      transform: rotate(-90deg)
+
+.copyright
+  display: flex
+  justify-content: center
+  align-items: center
+  color: $main-white-color

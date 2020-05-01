@@ -25,7 +25,8 @@
     "jest": true
   },
   "rules": {
-    "no-console": 1,
+    "no-console": 0,
+    "consistent-return": 0,
     "linebreak-style": ["error", "unix"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "jsx-a11y/no-onchange": 0,
@@ -38,6 +39,7 @@
     ],
     "react/static-property-placement": [1, "static public field"],
     "react/state-in-constructor": [1, "never"],
+    "react/no-children-prop": 0,
     "react/sort-comp": [
       2,
       {

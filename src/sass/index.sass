@@ -11,18 +11,50 @@ $main-red-color: #fc5c7d
 $main-blue-color: #6a82fb
 $main-white-color: #fff
 $main-gray-color: #e7e7e7
+$main-yellow-color: gold
 $main-dark-color: #333
+$main-gradient: linear-gradient(to right, #fc5c7d, #6a82fb)
+$main-box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)
+
+.loader
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
 
 .page-container
-  max-width: 500px
-  padding: 0 15px
+  max-width: 1200px
+  padding: 15px
   margin: 0 auto
+  min-height: calc( 100vh - 180px )
+
+  @media only screen and (max-width: 900px)
+    min-height: calc( 100vh - 207px )
+
+.footer
+  width: 100%
+  height: 62px
+  background: $main-blue-color
 
 .title
   font-weight: 500
   font-size: 24px
+  margin: 0
 
-@import 'contact-form/contact-form'
-@import 'contact-list/contact-list'
-@import 'contact-filter/contact-filter'
+.empty
+  display: block
+  font-weight: 500
+  font-size: 18px
+  color: $main-dark-color
+  margin-top: 20px
+
+@import 'films-list/films-list'
 @import 'custom-alert/custom-alert'
+@import 'search-bar/search-bar'
+@import 'search-bar/search-form'
+@import 'pagination/pagination'
+@import 'home/home'
+@import 'cast-list/cast-list'
+@import 'movie-info/movie-info'
+@import 'reviews-list/reviews-list'
+@import 'footer/footer'

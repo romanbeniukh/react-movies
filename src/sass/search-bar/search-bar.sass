@@ -1,0 +1,32 @@
+.search-bar
+  top: 0
+  left: 0
+  position: sticky
+  z-index: 1100
+  display: flex
+  justify-content: space-between
+  align-items: center
+  min-height: 64px
+  padding: 12px 24px
+  color: #fff
+  background: $main-blue-color
+  box-shadow: $main-box-shadow
+
+  @media only screen and (max-width: 900px)
+    justify-content: center
+    flex-direction: column
+
+  &__link-wrap
+
+    @media only screen and (max-width: 900px)
+      margin-bottom: 20px
+
+  &__link
+    font-size: 18px
+    font-weight: 500
+    color: $main-white-color
+    text-decoration: none
+    margin-right: 20px
+
+  &__link--active
+    color: $main-red-color
