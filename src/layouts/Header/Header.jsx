@@ -1,10 +1,8 @@
 import React from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Search from '../../components/Search/Search';
 
 const Header = () => {
-  const history = useHistory();
-
   return (
     <header className="search-bar">
       <div className="search-bar__link-wrap">
@@ -18,7 +16,7 @@ const Header = () => {
           Top rated
         </NavLink>
       </div>
-      <Search history={history} />
+      <Search />
     </header>
   );
 };

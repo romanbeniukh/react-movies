@@ -1,9 +1,15 @@
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import T from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
-const FilmsItem = ({ film }) => (
-  <Link to={`/movie/${film.id}`}>
+const FilmsItem = ({ film, location }) => (
+  <Link
+    to={{
+      pathname: `/movie/${film.id}`,
+      state: { from: location },
+    }}
+  >
     <img
       className="films-list__poster"
       src={
@@ -24,6 +30,7 @@ FilmsItem.propTypes = {
     original_title: T.string,
     title: T.string,
   }).isRequired,
+  location: ReactRouterPropTypes.location.isRequired,
 };
 
-export default FilmsItem;
+export default withRouter(FilmsItem);

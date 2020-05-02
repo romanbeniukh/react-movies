@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
+import { withRouter } from 'react-router-dom';
 import pushToHistory from '../../helpers/pushToHistory';
 
 class Search extends Component {
@@ -59,4 +60,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default withRouter(Search);

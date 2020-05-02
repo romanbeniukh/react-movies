@@ -1,0 +1,25 @@
+.go-back
+  display: flex
+  align-items: center
+  background-color: transparent
+  padding: 0
+  margin: 20px 0 0
+  border: none
+  cursor: pointer
+
+  svg
+    width: 15px
+    transform: rotate(180deg)
+
+  &__title
+    color: $main-dark-color
+    font-size: 18px
+    font-weight: 500
+    margin: 0 0 0 10px
+
+  &:hover
+    svg path
+      fill: $main-red-color
+
+    .go-back__title
+      color: $main-red-color

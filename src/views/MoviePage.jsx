@@ -48,12 +48,11 @@ class MoviePage extends Component {
 
   render() {
     const { movieInfo } = this.state;
-    const { match } = this.props;
 
     return (
       <Section title={`${movieInfo.title}`}>
-        <Movie movie={movieInfo} match={match} />
-        <MovieRoute match={match} />
+        <Movie movie={movieInfo} />
+        <MovieRoute />
       </Section>
     );
   }
