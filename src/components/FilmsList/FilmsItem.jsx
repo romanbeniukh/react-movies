@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import T from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 const FilmsItem = ({ film, location }) => (
-  <Link
+  <NavLink
+    className="films-list__link"
     to={{
       pathname: `/movie/${film.id}`,
       state: { from: location },
@@ -20,7 +21,7 @@ const FilmsItem = ({ film, location }) => (
       alt={film.original_title}
     />
     <p className="films-list__name">{film.title}</p>
-  </Link>
+  </NavLink>
 );
 
 FilmsItem.propTypes = {
