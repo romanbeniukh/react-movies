@@ -6,6 +6,7 @@ import Pagination from '../components/Pagination/Pagination';
 import scrollToTop from '../helpers/scrollToTop';
 import Section from '../layouts/Section/Section';
 import Search from '../components/Search/Search';
+import CustomAlert from '../components/Alert/CustomAlert';
 
 class SearchPage extends Component {
   static propTypes = {
@@ -19,6 +20,8 @@ class SearchPage extends Component {
     searchQuery: '',
     page: 1,
     totalPages: null,
+    isError: false,
+    errorMessage: '',
   };
 
   componentDidMount() {
@@ -41,12 +44,19 @@ class SearchPage extends Component {
 
   fetchSearchedMovies = () => {
     const { searchQuery, page } = this.state;
+    this.setState({ isError: false });
     movies
       .getSearched(searchQuery, page)
       .then(data => {
         this.setState({
           films: data.results,
           totalPages: data.total_pages,
+        });
+      })
+      .catch(error => {
+        this.setState({
+          isError: true,
+          errorMessage: error.message,
         });
       })
       .finally(() => scrollToTop());
@@ -68,13 +78,11 @@ class SearchPage extends Component {
     const { location } = this.props;
     const searchParam = location.search;
     const params = new URLSearchParams(searchParam);
-    const query = params.get(`page`);
+    const page = params.get(`page`);
 
-    if (query !== null) {
-      this.setState({ page: Number(query) });
-    } else {
-      this.setState({ page: Number(1) });
-    }
+    this.setState({
+      page: page !== null ? Number(page) : 1,
+    });
   };
 
   pushCurrentPageToUrl = currentPage => {
@@ -83,36 +91,30 @@ class SearchPage extends Component {
     history.push(`${match.path}?q=${this.state.searchQuery}&page=${currentPage}`);
   };
 
-  incrementPage = page => {
-    const currentPage = page + 1;
-    this.setState({ page: currentPage });
-    this.pushCurrentPageToUrl(currentPage);
+  paginating = page => {
+    this.setState({ page });
+    this.pushCurrentPageToUrl(page);
   };
 
-  decrementPage = page => {
-    const currentPage = page - 1;
-    this.setState({ page: currentPage });
-    this.pushCurrentPageToUrl(currentPage);
+  closeAlert = () => {
+    this.setState({
+      isError: false,
+    });
   };
 
   render() {
-    const { films, page, totalPages, searchQuery } = this.state;
-    const { history } = this.props;
+    const { films, page, totalPages, searchQuery, isError, errorMessage } = this.state;
     return (
       <>
+        {isError && <CustomAlert isAlert={isError} closeAlert={this.closeAlert} message={errorMessage} />}
         {searchQuery === null ? (
           <Section title="Enter some film name">
-            <Search history={history} />
+            <Search />
           </Section>
         ) : (
           <Section title={`Search result for: ${searchQuery}`}>
             <FilmsList films={films} />
-            <Pagination
-              currentPage={page}
-              totalPages={totalPages}
-              increment={this.incrementPage}
-              decrement={this.decrementPage}
-            />
+            {films.length && <Pagination currentPage={page} totalPages={totalPages} paginating={this.paginating} />}
           </Section>
         )}
       </>

@@ -13,7 +13,7 @@ export default {
   getMovieCast: async id => {
     try {
       const { data } = await axios.get(endpoint.GET_MOVIE_CAST(id));
-      return data;
+      return data.cast;
     } catch (error) {
       console.log(error);
     }
@@ -21,7 +21,7 @@ export default {
   getMovieReviews: async id => {
     try {
       const { data } = await axios.get(endpoint.GET_MOVIE_REVIEWS(id));
-      return data;
+      return data.results;
     } catch (error) {
       console.log(error);
     }
@@ -29,7 +29,7 @@ export default {
   getSimilarMovie: async id => {
     try {
       const { data } = await axios.get(endpoint.GET_SIMILAR_MOVIES(id));
-      return data;
+      return data.results;
     } catch (error) {
       console.log(error);
     }

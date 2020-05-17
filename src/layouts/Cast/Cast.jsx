@@ -22,22 +22,18 @@ class Cast extends Component {
     const { id } = this.state;
 
     movie.getMovieCast(id).then(data => {
-      const castArr = data.cast.slice(0, 10);
+      const cast = data.slice(0, 10);
 
-      if (castArr.length) {
-        this.setState({ cast: castArr });
-      } else {
-        this.setState({ cast: null });
-      }
+      this.setState({
+        cast: cast.length ? cast : [],
+      });
     });
   };
 
   render() {
     const { cast } = this.state;
     return (
-      <Section title="Cast">
-        {cast !== null ? <CastList cast={cast} /> : <span className="empty">No cast</span>}
-      </Section>
+      <Section title="Cast">{cast.length ? <CastList cast={cast} /> : <span className="empty">No cast</span>}</Section>
     );
   }
 }

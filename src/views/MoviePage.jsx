@@ -4,6 +4,8 @@ import movie from '../api/movie';
 import Movie from '../components/Movie/Movie';
 import Section from '../layouts/Section/Section';
 import MovieRoute from '../routes/MovieRoute';
+import CustomAlert from '../components/Alert/CustomAlert';
+import scrollToTop from '../helpers/scrollToTop';
 
 class MoviePage extends Component {
   static propTypes = {
@@ -12,7 +14,9 @@ class MoviePage extends Component {
 
   state = {
     id: '',
-    movieInfo: {},
+    movieInfo: [],
+    isError: false,
+    errorMessage: '',
   };
 
   componentDidMount() {
@@ -41,19 +45,37 @@ class MoviePage extends Component {
   getMovieDetails = () => {
     const { id } = this.state;
 
-    movie.getMovieDetails(id).then(data => {
-      this.setState({ movieInfo: data });
+    movie
+      .getMovieDetails(id)
+      .then(data => {
+        this.setState({ movieInfo: data });
+      })
+      .catch(error => {
+        this.setState({
+          isError: true,
+          errorMessage: error.message,
+        });
+      })
+      .finally(() => scrollToTop());
+  };
+
+  closeAlert = () => {
+    this.setState({
+      isError: false,
     });
   };
 
   render() {
-    const { movieInfo } = this.state;
+    const { movieInfo, isError, errorMessage } = this.state;
 
     return (
-      <Section title={`${movieInfo.title}`}>
-        <Movie movie={movieInfo} />
-        <MovieRoute />
-      </Section>
+      <>
+        {isError && <CustomAlert isAlert={isError} closeAlert={this.closeAlert} message={errorMessage} />}
+        <Section title={`${movieInfo.title}`}>
+          <Movie movie={movieInfo} />
+          <MovieRoute />
+        </Section>
+      </>
     );
   }
 }

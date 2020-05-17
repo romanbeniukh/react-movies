@@ -22,13 +22,11 @@ class Reviews extends Component {
     const { id } = this.state;
 
     movie.getMovieReviews(id).then(data => {
-      const reviewsArr = data.results.slice(0, 10);
+      const reviews = data.slice(0, 10);
 
-      if (reviewsArr.length) {
-        this.setState({ reviews: reviewsArr });
-      } else {
-        this.setState({ reviews: null });
-      }
+      this.setState({
+        reviews: reviews.length ? reviews : [],
+      });
     });
   };
 
@@ -37,7 +35,7 @@ class Reviews extends Component {
 
     return (
       <Section title="Reviews">
-        {reviews !== null ? <ReviewsList reviews={reviews} /> : <span className="empty">No reviews</span>}
+        {reviews.length ? <ReviewsList reviews={reviews} /> : <span className="empty">No reviews</span>}
       </Section>
     );
   }

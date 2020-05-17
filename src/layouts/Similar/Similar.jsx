@@ -22,13 +22,11 @@ class Similar extends Component {
     const { id } = this.state;
 
     movie.getSimilarMovie(id).then(data => {
-      const similarArr = data.results.slice(0, 5);
+      const similar = data.slice(0, 5);
 
-      if (similarArr.length) {
-        this.setState({ similar: similarArr });
-      } else {
-        this.setState({ similar: null });
-      }
+      this.setState({
+        similar: similar.length ? similar : [],
+      });
     });
   };
 
@@ -37,7 +35,7 @@ class Similar extends Component {
 
     return (
       <Section title="Similar">
-        {similar !== null ? <FilmsList films={similar} /> : <span className="empty">No similar</span>}
+        {similar.length ? <FilmsList films={similar} /> : <span className="empty">No similar</span>}
       </Section>
     );
   }
